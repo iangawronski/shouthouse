@@ -13,13 +13,11 @@ class ShoutsController < ApplicationController
   def create
     @shout = Shout.new(shout_params)
     @shout.user_id = params[:user_id]
-
     redirect_to :action => :show
   end
 
   def destroy
     @shout.destroy
-
     redirect_to :action => :index, notice: 'Shout destroyed.  Boo yah!'
   end
 
@@ -32,7 +30,7 @@ class ShoutsController < ApplicationController
   private
 
     def shout_params
-      params.require(:shout).permit(:body)
+      params.require(:shout).permit(:body, :user_id)
     end
 
     def set_shout
