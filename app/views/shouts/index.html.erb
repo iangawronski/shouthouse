@@ -1,0 +1,11 @@
+<p id="notice"><%= notice %></p>
+
+<h1>List of Shouts</h1>
+
+<% @shouts.each do |shout| %>
+  <div class="shout">
+    <%= render "shout", shout: shout %>
+  </div>
+<% end %>
+
+<%= link_to 'New Shout', new_user_shout_path %>
