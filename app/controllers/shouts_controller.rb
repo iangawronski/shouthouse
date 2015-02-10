@@ -1,8 +1,9 @@
 class ShoutsController < ApplicationController
-  before_action :set_shout [:show, :edit, :destroy]
+  before_action :set_shout, only: [:destroy, :show, :update]
+  before_action :set_user
 
   def index
-    @shouts = @shouts.all
+    @shouts = @user.shouts.all
   end
 
   def new
@@ -13,7 +14,8 @@ class ShoutsController < ApplicationController
   def create
     @shout = Shout.new(shout_params)
     @shout.user_id = params[:user_id]
-    redirect_to :action => :show
+    @shout.save
+    redirect_to user_shouts_path
   end
 
   def destroy
@@ -26,6 +28,12 @@ class ShoutsController < ApplicationController
     render :show
   end
 
+  def update
+    @shout.update(shout_params)
+    @shout.save
+    redirect_user users_shouts_path(@user, @shouts)
+  end
+
 
   private
 
@@ -35,6 +43,10 @@ class ShoutsController < ApplicationController
 
     def set_shout
       @shout = Shout.find(params[:id])
+    end
+
+    def set_user
+      @user = User.find(params[:user_id])
     end
 
 end

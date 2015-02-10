@@ -2,10 +2,15 @@
 
 <h1>List of Shouts</h1>
 
-<% @shouts.each do |shout| %>
+<% @user.shouts.each do |shouts| %>
   <div class="shout">
-    <%= render "shout", shout: shout %>
+    <%= shouts.body %>
+<br>
+    <%= link_to 'Delete', user_shout_path(@user, shouts), method: :delete %>
+
   </div>
 <% end %>
 
-<%= link_to 'New Shout', new_user_shout_path %>
+<br>
+
+<%= link_to 'New Shout', new_user_shout_path(@user) %>
