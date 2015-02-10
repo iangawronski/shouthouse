@@ -1,0 +1,13 @@
+<P id="notice"><% notice %></p>
+ <h1> Welcome!</h1>
+
+  <ul>
+      <% @user.each do |user| %>
+      <li>Heya, <% user.username %> </li>
+      <li> <%= link_to "Shouts", user_shouts_path(user) %>
+       <%= link_to "Delete User", user_path(user), method: :delete %>
+       </li>
+       <% end %>
+  </ul>
+
+  <%= link_to 'New User', new_user_path %>
