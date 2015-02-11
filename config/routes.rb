@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :users, :only => [:new, :create, :destroy, :index] do
   resources :shouts, :only => [:new, :create, :show, :destroy, :index]
 end
