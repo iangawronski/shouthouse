@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, :only => [:destroy]
+  # before_action :authenticate_user!, :only => [:destroy]
 
   def new
    @user = User.new
@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create(user_params)
-    redirect_to users_path, notice: "User Created."
+    redirect_to new_user_session
   end
 
   def index
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 
 private
   def user_params
-    params.require(:user).permit(:username, :password)
+    params.require(:user).permit(:username, :password, :email)
   end
 
 end
