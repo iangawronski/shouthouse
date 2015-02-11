@@ -4,13 +4,16 @@
 
 <% @user.shouts.each do |shouts| %>
   <div class="shout">
-    <%= shouts.body %>
-<br>
-    <%= link_to 'Delete', user_shout_path(@user, shouts), method: :delete %>
+    <%= shouts.body %> | <%= link_to 'Delete', user_shout_path(@user, shouts), method: :delete %>
 
   </div>
 <% end %>
 
 <br>
+---------------------
+<p><%= link_to 'New Shout', new_user_shout_path(@user) %></p>
 
-<%= link_to 'New Shout', new_user_shout_path(@user) %>
+---------------------
+<p><%= link_to 'Users Page', users_path(@user) %></p>
+
+---------------------
