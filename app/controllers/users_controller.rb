@@ -24,6 +24,7 @@ class UsersController < ApplicationController
     else
       flash[:alert] = "You can only delete your own account!"
       redirect_to :root
+    end
   end
 
 private
