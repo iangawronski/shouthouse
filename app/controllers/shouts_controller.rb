@@ -1,6 +1,8 @@
 class ShoutsController < ApplicationController
   before_action :set_shout, only: [:destroy, :show, :update]
   before_action :set_user
+  before_action :authenticate_user!, :except [:show, :index]
+  before_action :redirect_unless_user_match, :except [:show, :index]
 
   def index
     @shouts = @user.shouts.all
@@ -47,6 +49,13 @@ class ShoutsController < ApplicationController
 
     def set_user
       @user = User.find(params[:user_id])
+    end
+
+    def redirect_unless_user_match
+      unless @user == current_user
+        flash[:notice] = "You cannot perform actions on #{@user.username}"
+        redirect_to :root
+      end
     end
 
 end
