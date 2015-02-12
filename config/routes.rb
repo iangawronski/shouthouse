@@ -7,6 +7,11 @@ Rails.application.routes.draw do
   resources :users, :only => [:index, :destroy] do
     resources :shouts
   end
+
+  get 'users/:user_id/followers', to: 'users#followers'
+  put 'users/:user_id/followers', to: 'users#follow', as: 'add_new_follower'
+  delete 'users/:user_id/followers', to: 'users#unfollow', as: 'delete_follower'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
