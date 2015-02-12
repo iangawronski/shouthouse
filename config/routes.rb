@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :shouts
   end
 
-  get 'users/:user_id/followers', to: 'users#followers'
+  get 'users/:user_id/followers', to: 'users#followers', as: 'user_followers'
   put 'users/:user_id/followers', to: 'users#follow', as: 'add_new_follower'
   delete 'users/:user_id/followers', to: 'users#unfollow', as: 'delete_follower'
 

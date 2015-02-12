@@ -1,0 +1,9 @@
+<h1><%=current_user.username %>, these are your followers: </h1>
+
+<br>
+
+<ul>
+  <% current_user.followers.each do |f| %>
+  <li> <%= f.username %> ; <%= f.email %> </li>
+  <% end %>
+</ul>
